@@ -1,0 +1,179 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Geneson-type bands with a growing 2-adic modulus: finitely many monotone 4-term APs of each 2-adic depth in a permutation of ℤ (Erdős #195, partial)"
+  description: >-
+    Constructs an explicit bijection f : ℕ ≃ ℤ such that, for every v, only finitely many
+    monotone 4-term arithmetic progressions f i, f j, f k, f l (i < j < k < l, increasing or
+    decreasing) have a common difference d with 2-adic valuation ν₂(d) = v (Theorem H), and,
+    for every t ≥ 1, a bijection f_t : ℕ ≃ ℤ with no monotone 4-term arithmetic progression
+    whose difference is not divisible by 2^t (Theorem G). The integers are listed 0 first and
+    then in finite bands of magnitudes a^β with base a = 3, cut by residue classes modulo 2^t_s;
+    inside a band the negatives come in increasing and the positives in decreasing 2-adic
+    order. For constant t_s = t this is the block construction of J. Geneson (arXiv:2608.12604,
+    §5) without truncation, and Theorem G is an immediate corollary of the m ∤ d branches of his
+    arguments. Theorem H lets the modulus grow with the stage (t_s = s + 1), which gives one
+    permutation for all depths at once. Every monotone 4-term progression of these permutations
+    has a "seam step" between consecutive stages, and seam progressions do occur, so this is
+    partial progress on Erdős Problem #195, which remains open: it asks for the largest k such
+    that every permutation of ℤ contains a monotone k-term arithmetic progression (known to be 3
+    or 4, so the question is whether every permutation contains a monotone 4-term AP).
+  authors:
+    - "Alex Lopez"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Alex Lopez"
+
+classification:
+  arxiv: ["math.CO", "math.NT"]
+  msc2020: ["11B25", "05A05"]
+
+sources:
+  - title: "Theorem H (stage-dependent modulus; docs/proof.md in this repository)"
+    type: original-proof
+    relationship: other
+    note: "Theorem H (finitely many monotone 4-term APs of each 2-adic valuation in one permutation of ℤ) is first presented here; found and written with Claude Fable 5.1 and Claude Opus 5.5 (Anthropic)."
+  - title: "Density bounds for permutations avoiding monotone arithmetic progressions"
+    authors:
+      - "Jesse Geneson"
+    id: "arXiv:2608.12604"
+    type: "preprint"
+    relationship: other
+    note: "Source of the block construction (§5, (5.2)–(5.3)), its binary inner order (§2) and the separation arguments (Lemmas 2.1 and 5.1–5.5). Theorem G (Erdos195Bands.finite_depth) is an immediate corollary of the m ∤ d branches of his proofs with truncation constant c = 1, stages started one step earlier and 0 listed first; he does not state it. Theorem H replaces his fixed modulus m by a modulus 2^t_s that grows with the stage. The proofs here are written out afresh because his lemmas assume an integer a ≥ 4 and 2 + 1/a < c < a."
+  - title: "Erdős Problem #195"
+    authors:
+      - "Thomas F. Bloom"
+    contributors:
+      - name: "Paul Erdős"
+        role: "problem-proposer"
+      - name: "Ronald Graham"
+        role: "problem-proposer"
+    id: "https://www.erdosproblems.com/195"
+    type: "web page"
+    relationship: background
+  - title: "On permutations avoiding arithmetic progressions"
+    authors:
+      - "Timothy D. LeSaulnier"
+      - "Sujith Vijay"
+    id: "doi:10.1016/j.disc.2010.10.006"
+    type: "article"
+    location: "Discrete Mathematics 311 (2011), 205–207"
+    relationship: background
+    note: "Proves the odd-difference statement for permutations of ℕ."
+  - title: "Avoiding monotone arithmetic progressions in permutations of integers"
+    authors:
+      - "Sarosh Adenwalla"
+    id: "doi:10.1016/j.disc.2024.114183"
+    type: "article"
+    location: "Discrete Mathematics 347 (2024), 114183"
+    relationship: background
+    note: "Theorem 4 of arXiv:2211.04451 is the ℕ analogue of Theorem G for every 2^k; Geneson's blocks build on Adenwalla's geometric residue blocks."
+  - title: "Chaotic orderings of the rationals and reals"
+    authors:
+      - "Hayri Ardal"
+      - "Tom Brown"
+      - "Veselin Jungić"
+    id: "doi:10.4169/amer.math.monthly.118.10.921"
+    type: "article"
+    location: "American Mathematical Monthly 118 (2011), 921–925"
+    relationship: background
+    note: "The 2-adic order on ℤ used inside the bands (their Definitions 2.1 and 2.2, as recorded in Geneson's §2)."
+  - title: "A 4AP-free permutation of the positive integers"
+    authors:
+      - "Boon Suan Ho"
+    id: "arXiv:2609.12780"
+    type: "preprint"
+    relationship: background
+
+related_formalizations:
+  - id: "https://github.com/Alex-lop/erdos-195-odd-difference"
+    relationship: other
+    note: "Odd-difference case (the statement of Theorem G for t = 1), by a different construction (a key order). Not used here."
+  - id: "https://github.com/Alex-lop/erdos-195-difference-not-div-4"
+    relationship: other
+    note: "Differences not divisible by 4 (the statement of Theorem G for t = 2), by a different construction (a reflection merge). Not used here."
+  - id: "https://github.com/google-deepmind/formal-conjectures/blob/5d8b04d3d41b745cc3f2f3cdd5ed04b60c500983/FormalConjectures/ErdosProblems/195.lean"
+    relationship: other
+    note: "Statement of Erdős #195 (one-sided permutations ℕ ≃ ℤ and HasMonotoneAP). checks/fidelity.lean restates Erdos195Bands.finite_depth with verbatim copies of its List.IsAPOfLengthWith, List.IsAPOfLength and HasMonotoneAP, restricted to differences not divisible by 2^t, and restates Erdos195Bands.main_result with the list form."
+
+status:
+  scope: >-
+    Fully formalizes Theorem G for every t ≥ 1 and Theorem H in the instance t_s = s + 1, base
+    a = 3, in the form "for every v only finitely many monotone 4-term APs, given by first term
+    and difference, have ν₂(d) = v". The underlying seam lemma (Erdos195Bands.exists_seam) is
+    proved for an arbitrary sequence t : ℕ → ℕ. Not formalized: Theorem H for real bases
+    a ≥ 1 + √2 other than 3, the precise seam items (i), (ii) and (iv) (Lean's seam records only
+    the divisibility and crude bounds), the factor 2 + 1/a and the explicit bound H(j), and Prop. 2 (seam progressions exist at every seam) beyond the two
+    explicit examples proved for the audit. Erdős #195 itself is not resolved: monotone 4-term
+    APs occur in all of these permutations.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Fable 5.1", "Claude Opus 5.5 (claude-opus-5-5)"]
+      framework: "Claude Code"
+      tool_setup: >-
+        Claude Code agents in an unattended research run on open Erdős problems: an orchestrating
+        workflow; a Claude Opus 5.5 critic agent that read Geneson's §5 with its constants traced
+        and noticed Theorem G; a Claude Fable 5.1 solver agent that found Theorem H (stage-dependent
+        modulus) and tested it with Python and C; for each of the two theorems three adversarial AI
+        referee subagents (proof, computation, scope) that checked the informal argument with
+        independently written code; and a Claude Opus 5.5 formalization subagent that wrote the
+        Lean proof, iterating with the Lean compiler (omega for the digit and exponent
+        arithmetic, linarith for the magnitude bounds).
+      cost:
+        wall_time: "about 3 hours for the critic, solver, referee and formalization rounds"
+        spend_usd: "subscription-based"
+        hardware: "local machine"
+      prompting_notes: >-
+        The user asked Claude to find and fully solve an open Erdős problem, formalize it in Lean
+        and publish it, falling back to rigorous partial results labelled as partial when no full
+        solution survives verification. No full solution was found. The workflow prompts required
+        honest labelling, independent verification, credit for prior work, and Lean proofs without
+        sorry, native_decide or new axioms.
+  spend_usd: "subscription-based"
+  notes: >-
+    The mathematics, the write-up and the Lean code were produced by Claude Fable 5.1 and Claude
+    Opus 5.5 (Anthropic) in Claude Code under the direction of Alex Lopez. Theorem G was noticed
+    by a Claude Opus 5.5 critic agent reading Geneson's §5; Theorem H was found by a Claude Fable
+    5.1 solver agent. Each informal argument was checked by three adversarial AI referees; the
+    formal proof is checked by the Lean kernel. No human has refereed the work.
+
+fidelity:
+  divergences: >-
+    Theorem H is stated in docs/proof.md for every real base a ≥ 1 + √2 and every sequence t_s with t_s → ∞ (the seam theorem holds for every t_s);
+    the Lean statement uses a = 3 and t_s = s + 1 and states only finiteness for each valuation,
+    not the explicit bound. A monotone 4-term AP is recorded by the pair (first term in index
+    order, difference), so each one is counted once, with a negative difference for a
+    decreasing one.
+
+review:
+  status: "self-assessed"
+  reviewers:
+    - "none"
+  notes: >-
+    The statements in Challenge.lean and Solution.lean were checked to elaborate to byte-identical
+    terms (pp.all), and #print axioms reports only propext, Classical.choice and Quot.sound for both
+    theorems. The informal proofs of Theorems G and H were checked by three adversarial AI referees
+    each (proof, computation, scope), with independent programs on windows of integers. The
+    informal proofs have not been refereed by a human.
+
+alignment:
+  namespace: "Erdos195Bands"
+  statements:
+    - source: "docs/proof.md, Theorem H and its Corollary (instance t_s = s + 1, a = 3)"
+      lean: "Erdos195Bands.main_result"
+      module: "Challenge"
+      status: "proved"
+      note: "One f : ℕ ≃ ℤ; for every v the set of pairs (a, d), d ≠ 0, padicValInt 2 d = v, such that indices i < j < k < l carry a, a + d, a + 2d, a + 3d, is finite."
+    - source: "docs/proof.md, Theorem G"
+      lean: "Erdos195Bands.finite_depth"
+      module: "Challenge"
+      status: "proved"
+      note: "For every t ≥ 1 some f : ℕ ≃ ℤ has no indices i < j < k < l carrying a, a + d, a + 2d, a + 3d with ¬ 2^t ∣ d; a negative d covers decreasing progressions."
+
+acknowledgements: "Lean 4 and Mathlib; J. Geneson for the block construction this work builds on; the formal-conjectures project for the statement of Erdős #195; the Palomar template for the repository layout."
